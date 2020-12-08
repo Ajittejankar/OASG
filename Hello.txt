@@ -1,1 +1,135 @@
-Temppppp!
+components:
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+info:
+  description: "This is sample service created for Open API Spec Generator. This spec\
+    \ will cover all the aspect & scenario capability of govern by OASG(Open API Specification\
+    \ Generator) <br><br><br> Disclaimer-This is auto generated Open API Specification.<br>\xA9\
+    OpenAPIGenerator- 2020 - 2021"
+  title: OASG
+  version: V1
+openapi: 3.0.1
+paths:
+  openapispec/SwaggerSpec:
+   post:
+      tags:
+      - "Create Swagger Spec"
+      summary: "Create Swagger  Spec"
+      description: ""
+      operationId: "addPet"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/xml"
+ 
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateSwagger"
+      security:
+      - bearerAuth: []
+     
+servers:
+- url: https://apigw-sbx.abc.com/dev12
+definitions:
+  CreateSwagger:
+    properties:
+      ProjectDetails:
+        type: object
+        properties:
+          ProjectTitle:
+            type: string
+          ProjectDescription:
+            type: string
+          ProjectVersion:
+            type: string
+          notificationId:
+            type: string
+        required:
+          - ProjectTitle
+          - ProjectDescription
+          - ProjectVersion
+          - notificationId
+      servers:
+        type: array
+        items:
+        - type: object
+          properties:
+                url:
+                  type: string
+          required:
+                - url
+      APIDetails:
+        type: array
+        items:
+          - type: object
+            properties:
+              APIName:
+                type: string
+              path:
+                type: string
+              securityPolicy:
+                type: string
+              methodDetails:
+                type: array
+                items:
+                  - type: object
+                    properties:
+                      method:
+                        type: string
+                      requestExample:
+                        type: array
+                        items:
+                          - type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                            required:
+                              - key
+                              - value
+                      responseExample:
+                        type: array
+                        items:
+                          - type: object
+                            properties:
+                              statusCode:
+                                type: integer
+                              examples:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                  - key
+                                  - value
+                            required:
+                              - statusCode
+                              - examples
+                    required:
+                      - method
+                      - requestExample
+                      - responseExample
+            required:
+              - APIName
+              - path
+              - securityPolicy
+              - methodDetails
+    required:
+      - ProjectDetails
+      - servers
+      - APIDetails
+
+
